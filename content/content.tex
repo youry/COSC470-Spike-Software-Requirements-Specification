@@ -1,3 +1,5 @@
+
+
 \chapter{Introduction}
 \label{ch:intro}
 
@@ -28,14 +30,206 @@
 
 \chapter{Requirements}
 \label{Requirements}
-
+\section{Description}
+  Collect stock market data for analysis by a Machine Learning algorithm that will generate price predictions for the analyzed stocks. Data will automatically be retrieved from an API at a determined schedule, sanitized, and stored in a database.\par
+  The database will retain all inserted data, with regularly scheduled backups and indexing. An automated process will be designed to take the information from the database and transform it for storage in a data warehouse. This data warehouse will feed the ML algorithm, but the mechanism for this action is out of scope of this project.
+% Requested data includes:
+%  \begin{enumerate}
+%    \item current day stock information
+%    \item historical stock information
+%    \item quarterly company financial releases (including company metrics such as number of employees)
+%    \item current day commodities prices (such as gold, oil, etc.)
+%    \item current day US treasury bond yields (2, 5, \& 10 year)
+%    \item and current day stock index prices (from the NASDAQ, Dow Jones, and S\&P exchanges)
+%  \end{enumerate}
 \section{Functional Requirements}
+\begin{enumerate}
+   \item Automated collection of data from a provided API
+     \begin{enumerate}
+       \item One-time collection of historical stock information.
+       \item Quarterly collection of company financial information and metrics.
+       \item Collection of current day stock information.
+       \item Collection of current day commodities prices.
+       \item Collection of current day treasury bond yields for 2, 5, and 10 year bonds.
+       \item Collection of current day stock index prices from NASDAQ, Dow Jones, and S\&P exchanges.
+      \end{enumerate}
+  \item Automated collection of data via scraping from a configurable set of websites.
+  \item Automated sanitization and insertion of data into an OLTP database.
+    \begin{enumerate}
+       \item Collected data is transformed into the JSON format for insertion into the database.
+       \item Collected data is validated before insertion in the database.
+     \end{enumerate}
+  \item Automated preparation and insertion of data from OLTP database into an OLAP data warehouse.
+ \end{enumerate}
 \section{Non Functional Requirements}
-
+\begin{enumerate}
+    \item The system should be coded in such a way that it is self-documenting.
+    \item The system should have redundancy checks in the event of outages or data collection/insertion failures.
+    \item The database should handle automatic backups and indexing at regular intervals to ensure data losses are minimized.
+    \item Data should be retained for up to 5 years for historical purposes.
+    \item The warehouse should handle automatic backups to ensure data losses are minimized.
+    \item The database and warehouse should use a standard relational database language (SQL).
+    \item Processing of data should be finished before the next business day.
+    \item The database/warehouse should be designed with considerations for compatibility with various database management systems (i.e. MySQL, PostgreSQL, Oracle, etc…).
+    \item The automated scripts for data collection, transformation, and loading should be written in easily maintained languages that are compatible with different hosting providers (Python, PHP).
+    \item The data collection should be constructed in a modular fashion so additional data sources may be added as part of future work.
+    \item The system should be updated with stock, commodity, index, and bond data once per day, Monday to Friday.
+    \item The system should be updated with company related information once every quarter.
+\end{enumerate}
 \begin{appendices}
+% Please refer to the appendix.tex for structure change
+
+
+
+
+\chapter{Change Request Form}
+\begin{table}[!h]
+\centering
+\renewcommand{\arraystretch}{2.2}
+\begin{tabular}{p{10cm} p{3cm} p{3cm} p{3cm}}
+\hline
+\multicolumn{4}{|c|}{\textbf{CHANGE REQUEST FORM}}\\ \hline
+\multicolumn{1}{|l|}{\textbf{Request Title/Name:}}& \multicolumn{3}{l|}{}\\ \hline
+\multicolumn{2}{|l|}{\textbf{Requestor Name:}}& \multicolumn{2}{l|}{}\\ \hline
+\multicolumn{2}{|l|}{\textbf{Requestor Contact Email:}}& \multicolumn{2}{l|}{} \\ \hline
+\multicolumn{4}{|c|}{\textbf{Change Request Information}}\\ \hline
+\multicolumn{1}{|l|}{\textbf{Description:}}& \multicolumn{3}{l|}{}\\ \hline
+\multicolumn{1}{|l|}{\textbf{Details of Change:}}& \multicolumn{3}{l|}{} \\ \hline
+\multicolumn{1}{|l|}{\textbf{Reason for Change:}}& \multicolumn{3}{l|}{}\\ \hline
+\multicolumn{1}{|l|}{\textbf{Impacts:}}& \multicolumn{3}{l|}{}\\ \hline
+\multicolumn{1}{|l|}{\textbf{Date Required:}}& \multicolumn{3}{l|}{}\\ \hline
+Signature:\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ & \multicolumn{3}{l}{Date:\_\_\_\_\_\_\_\_\_\_\_}\\
+\multicolumn{4}{l}{DEVELOPMENT TEAM USE ONLY}\\ \hline
+\multicolumn{4}{|l|}{Status:}\\ \hline
+\multicolumn{1}{|l|}{In Review}& \multicolumn{2}{l|}{Approved}& \multicolumn{1}{l|}{Rejected} \\ \hline
+\multicolumn{1}{|l|}{Approval Date:}& \multicolumn{2}{l|}{}& \multicolumn{1}{l|}{}\\ \hline
+\multicolumn{1}{|l|}{Approved By:}& \multicolumn{2}{l|}{}& \multicolumn{1}{l|}{}\\ \hline
+\end{tabular}
+\caption{Change Request Form}
+\label{change_request}
+\end{table}
+
+%%%%%%%%%%%%%%%%%
+% Team Contract %
+%%%%%%%%%%%%%%%%%
+\chapter{Team Contract}
+\noindent\textbf{Project Name:} COSC-470 Spike - Automated Financial Data Collection to Support ML Analysis \\
+\textbf{Product Owner:} Jacob Rawlings \\
+\textbf{SCRUM Master:} Jake Fischer
+
+\section{Commitments}
+I will:
+\begin{itemize}
+    \item Be honest and realistic in planning and reporting project scope and schedule.
+    \item Operate in a proactive manner, anticipating potential problems and working to prevent them before they happen.
+    \item Promptly notify the team and client(s) of any change that could affect them.
+    \item Keep other team members informed.
+    \item Focus on what is best for the project as a whole.
+    \item Fulfill the project work to the best of my abilities.
+\end{itemize}
+
+\section{Attendance}
+I will:
+\begin{itemize}
+    \item Attend all standup meetings scheduled during lecture time, to the best of my abilities.
+    \item Attend all lab sessions.
+    \item Attend meetings that are scheduled outside of class time, to the best of my abilities.
+    \item Attend all scheduled meetings with clients, to the best of my abilities.
+    \item Notify the Team Leader or Scrum Master of any absences ahead of time, to the best of my abilities.
+\end{itemize}
+
+\section{Team Meeting Ground Rules: Participation}
+I will:
+\begin{itemize}
+    \item Keep issues that arise in meetings in confidence within the team unless otherwise indicated.
+    \item Be honest and open during meetings.
+    \item Notify teammates of potential absence from meeting(s).
+    \item Give everyone the opportunity for equal participation.
+    \item Be open to new approaches and listen to new ideas.
+    \item Avoid placing blame when things go wrong.
+    \item Attend all meetings where possible.
+\end{itemize}
+
+\section{Team Meeting Ground Rules: Communication}
+I will:
+\begin{itemize}
+    \item Seek first to understand, and then to be understood.
+    \item Be clear and to the point.
+    \item Practice active, effective listening skills.
+    \item Keep discussions on track.
+    \item Use visual means such as drawings, charts, and tables to facilitate discussion.
+\end{itemize}
+
+\section{Team Meeting Ground Rules: Problem Solving}
+I will:
+\begin{itemize}
+    \item Encourage everyone to participate.
+    \item Encourage all ideas since new concepts come from outside of our normal perceptions.
+    \item Build on each other's ideas.
+    \item Use team tools when appropriate to facilitate problem solving.
+    \item Whenever possible, use data to assist in problem solving.
+    \item Remember that solving problems is a creative process.
+\end{itemize}
+
+\section{Team Meeting Ground Rules: Decision Making}
+I will:
+\begin{itemize}
+    \item Make decisions based on data whenever feasible.
+    \item Seek out required information or data.
+    \item Encourage and explore different interpretations of data.
+    \item Get input from my partner or the team before a decision is made.
+\end{itemize}
+
+\section{Team Meeting Ground Rules: Handling Conflict}
+I will:
+\begin{itemize}
+    \item Regard conflict as normal and as an opportunity for growth.
+    \item Seek to understand the interests and desires of each party involved before arriving at answers or solutions.
+    \item Choose an appropriate time and place to discuss and explore the conflict.
+    \item Listen openly to other points of view.
+    \item Repeat back to the other person what I understand and ask if it is correct.
+\end{itemize}
+
+\section{Jira \& Time Management}
+I will:
+\begin{itemize}
+    \item Visit the Jira page at least once per day to ensure I am up to date on changes to tasks.
+    \item Actively work on tickets assigned to me.
+    \item Actively ensure that the work status of tickets is updated and correct. (I.E. Tasks being worked on are marked as “In Progress”, etc.)
+    \item Log hours on tickets for work I have done.
+    \item Attach documents created for tickets to the correct ticket item.
+\end{itemize}
+
+\section{Git Control}
+I will:
+\begin{itemize}
+    \item Be careful and attentive when creating git commits.
+    \item When creating pull requests, I will reference the Jira ticket in the title.
+    \item … not merge my own pull requests, instead I will ask a designated team member to review.
+    \item … not directly merge to the Sprint or Development branch.
+    \item … not directly merge to the Main branch, unless a product release is approved by the Product Owner.
+\end{itemize}
+
+\vspace{1cm}
+
+\textbf{By signing below, you indicate you have read and agree to follow the Team Contract as it is written above to the best of your abilities.}
+
+\textbf{By signing below, you understand that failure to abide by part or whole of this Team Contract may result in the Progressive Discipline process being initiated, as posted on Moodle.}
+
+\begin{table}[H]
+    \def\arraystretch{3}
+    \begin{tabular}{ll}
+        \textbf{Name:} & \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ \\
+        \textbf{Date:} & \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ \\
+        \textbf{Signature:} & \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+    \end{tabular}
+\end{table}
+%%%%%%%%%%%%%%%%%
+%      END      %
+%%%%%%%%%%%%%%%%%
+
+
 \chapter{Glossary}
-
-
 \end{appendices}
 
 
